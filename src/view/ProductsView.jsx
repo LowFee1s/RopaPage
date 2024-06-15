@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom"
 
 const products = [
     {
       id: 1,
       name: 'Basic Tee',
-      href: '#',
+      href: '1',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -12,7 +13,7 @@ const products = [
     {
       id: 2,
       name: 'Basic Tee',
-      href: '#',
+      href: '2',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -21,7 +22,7 @@ const products = [
     {
       id: 3,
       name: 'Basic Tee',
-      href: '#',
+      href: '3',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -30,7 +31,7 @@ const products = [
     {
       id: 4,
       name: 'Basic Tee',
-      href: '#',
+      href: '4',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -39,7 +40,7 @@ const products = [
     {
       id: 5,
       name: 'Basic Tee',
-      href: '#',
+      href: '5',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -48,7 +49,7 @@ const products = [
     {
       id: 6,
       name: 'Basic Tee',
-      href: '#',
+      href: '6',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -57,7 +58,7 @@ const products = [
     {
       id: 7,
       name: 'Basic Tee',
-      href: '#',
+      href: '7',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
       imageAlt: "Front of men's Basic Tee in black.",
       price: '$35',
@@ -86,10 +87,10 @@ export default function ProductsView() {
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <a href={product.href}>
+                      <Link to={`/producto/${product.id}`}>
                         <span aria-hidden="true" className="absolute inset-0" />
                         {product.name}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                   </div>

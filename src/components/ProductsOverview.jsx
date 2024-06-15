@@ -1,8 +1,9 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Radio, RadioGroup } from '@headlessui/react'
 import MenuNavegationView from './MenuNavegationView'
+import { useParams } from 'react-router-dom'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -62,6 +63,61 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+function GetProductInformation() {
+  const [productData, setProductData] = useState(null);
+  const [errorFetch, setErrorFetch] = useState(null);
+  let { id } = useParams()
+
+  useEffect(() => {
+    fetch(`https://fakestoreapi.com/products/${id}`)
+      .then(response => response.json())
+      .then(data => setProductData(data))
+      .catch(error => { 
+        console.error('Error:', error)
+        setErrorFetch(error)
+      });
+  }, [id]); 
+
+  
+  if (errorFetch) {
+    return (
+      <div className='h-full justify-center w-full bg-white'>
+          <div className='flex flex-col items-center content-center'>
+            <img
+                    className="h-[70px] content-center w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt=""
+            />
+            <h1 className='font-bold content-center items-center text-indigo-500 text-4xl text-center'>Error 404. El Producto no existe.</h1>
+          </div>
+      </div>
+    );
+  } 
+  
+  if (!productData) {
+    return (
+      <div className='h-full justify-center w-full bg-white'>
+          <div className='flex flex-col items-center content-center'>
+            <img
+                    className="h-[70px] content-center w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    alt=""
+            />
+            <h1 className='font-bold content-center items-center text-indigo-500 text-8xl text-center'>....</h1>
+          </div>
+      </div>
+    );
+  }
+
+
+  return (
+    <div>
+      
+    </div>
+  )
+
+}
+
 export default function ProductsOverview() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
@@ -69,7 +125,7 @@ export default function ProductsOverview() {
   return (
     <div className="bg-white">
       <MenuNavegationView />
-
+      <GetProductInformation />
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
